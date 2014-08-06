@@ -32,8 +32,8 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 $GLOBALS['wgExtensionFunctions'][] = function() {
 	global $wgExtensionCredits, $wgMessagesDirs, $wgHooks, $wgResourceModules;
 
-	if ( !defined( 'WB_VERSION' ) ) {
-		throw new Exception( 'The WikimediaBadges extension requires Wikibase to be installed.' );
+	if ( !defined( 'WBC_VERSION' ) ) {
+		throw new Exception( 'The WikimediaBadges extension requires Wikibase Client to be installed.' );
 	}
 
 	$wgExtensionCredits['wikibase'][] = array(
