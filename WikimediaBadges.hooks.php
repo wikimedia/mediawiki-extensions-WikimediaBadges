@@ -27,10 +27,7 @@ final class Hooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		$settings = Settings::singleton();
-		$badgeTheme = $settings->hasSetting( 'badgeTheme' ) ?
-			$settings->getSetting( 'badgeTheme' ) : 'default';
-		$out->addModules( "wikimedia-badges.$badgeTheme" );
+		$out->addModules( 'wikimedia-badges' );
 		return true;
 	}
 
