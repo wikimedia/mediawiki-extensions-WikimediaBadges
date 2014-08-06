@@ -19,7 +19,7 @@ return call_user_func( function() {
 	$modules = array(
 		'wikimedia-badges.default' => $moduleTemplate + array(
 			'styles' => array(
-				'themes/default/wikimdia-badges.css',
+				'themes/default/wikimedia-badges.css',
 			)
 		),
 		// @todo add other themes as well

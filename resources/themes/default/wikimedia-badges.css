@@ -7,10 +7,12 @@
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 
-.wb-badge-goodarticle {
-	list-style-image: url(images/wb-badge-silverstar.png);
+.badge-goodarticle {
+	/* @embed */
+	list-style-image: url(../../images/badge-silverstar.png);
 }
 
-.wb-badge-featuredarticle {
-	list-style-image: url(images/wb-badge-goldstar.png);
+.badge-featuredarticle {
+	/* @embed */
+	list-style-image: url(../../images/badge-goldstar.png);
 }
