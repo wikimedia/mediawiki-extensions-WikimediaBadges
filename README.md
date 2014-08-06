@@ -1,4 +1,4 @@
 WikimediaBadges
 ===============
 
-Badge icons for Wikimedia projects (Wikimania2014 Hackathon)
+Extension which contains different themes to display badges on Wikimedia projects
