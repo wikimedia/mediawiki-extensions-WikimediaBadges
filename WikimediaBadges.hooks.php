@@ -27,7 +27,7 @@ final class Hooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		$out->addModules( 'wikimedia-badges' );
+		$out->addModules( 'wikimediabadges' );
 		return true;
 	}
 
