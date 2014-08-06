@@ -9,10 +9,10 @@
 
 .badge-goodarticle {
 	/* @embed */
-	list-style-image: url(images/badge-silver-star.png);
+	list-style-image: url(../../images/badge-silver-star.png);
 }
 
 .badge-featuredarticle {
 	/* @embed */
-	list-style-image: url(images/badge-golden-star.png);
+	list-style-image: url(../../images/badge-golden-star.png);
 }
