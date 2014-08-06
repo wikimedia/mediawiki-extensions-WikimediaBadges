@@ -8,11 +8,9 @@
  */
 
 .wb-badge-goodarticle {
-	/* @embed */
 	list-style-image: url(images/wb-badge-silverstar.png);
 }
 
 .wb-badge-featuredarticle {
-	/* @embed */
 	list-style-image: url(images/wb-badge-goldstar.png);
 }
