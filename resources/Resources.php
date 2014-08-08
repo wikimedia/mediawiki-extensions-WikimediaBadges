@@ -17,7 +17,7 @@ return call_user_func( function() {
 	);
 
 	$modules = array(
-		'wikimediabadges' => $moduleTemplate + array(
+		'wikimediaBadges' => $moduleTemplate + array(
 			'styles' => array(
 				'themes/default/wikimedia-badges.css',
 			)
