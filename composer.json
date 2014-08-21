@@ -1,5 +1,5 @@
 {
-	"name": "wikibase/WikimediaBadges",
+	"name": "wikibase/wikimedia-badges",
 	"description": "Extension which contains default themes to display badges on Wikimedia projects",
 	"type": "mediawiki-extension",
 	"version": "0.1-alpha",
