@@ -17,12 +17,16 @@ return call_user_func( function() {
 	);
 
 	$modules = array(
-		'wikimediaBadges' => $moduleTemplate + array(
+		'wikimediaBadges.default' => $moduleTemplate + array(
 			'styles' => array(
-				'themes/default/wikimedia-badges.css',
+				'skins/default/wikimedia-badges.css'
 			)
 		),
-		// @todo add other themes as well
+		'wikimediaBadges.cologneblue' => $moduleTemplate + array(
+			'styles' => array(
+				'skins/cologneblue/wikimedia-badges.css'
+			)
+		)
 	);
 
 	return $modules;
