@@ -27,12 +27,7 @@ final class Hooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		$skinName = $skin->getSkinName();
-		if ( $skinName === 'cologneblue' ) {
-			$out->addModules( 'wikimediaBadges.cologneblue' );
-		} else {
-			$out->addModules( 'wikimediaBadges.default' );
-		}
+		$out->addModules( 'wikimediaBadges' );
 		return true;
 	}
 

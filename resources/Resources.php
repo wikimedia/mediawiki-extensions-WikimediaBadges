@@ -17,14 +17,12 @@ return call_user_func( function() {
 	);
 
 	$modules = array(
-		'wikimediaBadges.default' => $moduleTemplate + array(
-			'styles' => array(
-				'skins/default/wikimedia-badges.css'
-			)
-		),
-		'wikimediaBadges.cologneblue' => $moduleTemplate + array(
-			'styles' => array(
-				'skins/cologneblue/wikimedia-badges.css'
+		'wikimediaBadges' => $moduleTemplate + array(
+			'skinStyles' => array(
+				'vector' => 'skins/vector/wikimedia-badges.css',
+				'monobook' => 'skins/monobook/wikimedia-badges.css',
+				'cologneblue' => 'skins/cologneblue/wikimedia-badges.css',
+				'modern' => 'skins/modern/wikimedia-badges.css',
 			)
 		)
 	);
