@@ -28,10 +28,10 @@ final class Hooks {
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		$skinName = $skin->getSkinName();
-		if ( $skinName === 'vector' || $skinName === 'monobook' ) {
-			$out->addModules( 'wikimediaBadges.default' );
-		} elseif ( $skinName === 'cologneblue' ) {
+		if ( $skinName === 'cologneblue' ) {
 			$out->addModules( 'wikimediaBadges.cologneblue' );
+		} else {
+			$out->addModules( 'wikimediaBadges.default' );
 		}
 		return true;
 	}
