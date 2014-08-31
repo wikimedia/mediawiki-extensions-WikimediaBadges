@@ -1,0 +1,25 @@
+/**
+ * Styles for badges on client wikis in the Modern skin
+ *
+ * @since 0.1
+ *
+ * @license GNU GPL v2+
+ * @author Bene* < benestar.wikimedia@gmail.com >
+ */
+
+.badge-goodarticle {
+	/* @embed */
+	list-style-image: url(../../images/badge-silver-star.png);
+	margin-left: 2px;
+}
+
+.badge-featuredarticle {
+	/* @embed */
+	list-style-image: url(../../images/badge-golden-star.png);
+	margin-left: 2px;
+}
+
+.badge-goodarticle a,
+.badge-featuredarticle a {
+	margin-left: -2px;
+}

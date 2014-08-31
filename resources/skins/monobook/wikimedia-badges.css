@@ -1,5 +1,5 @@
 /**
- * Styles for badges on client wikis in the Vector and MonoBook skins
+ * Styles for badges on client wikis in the MonoBook skin
  *
  * @since 0.1
  *
@@ -7,12 +7,12 @@
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 
-.badge-goodarticle {
+.portlet .badge-goodarticle {
 	/* @embed */
 	list-style-image: url(../../images/badge-silver-star.png);
 }
 
-.badge-featuredarticle {
+.portlet .badge-featuredarticle {
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
 }
