@@ -38,11 +38,8 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 		'version' => WIKIMEDIA_BADGES_VERSION,
 		'author' => '[[mw:User:Bene*|Bene*]]',
 		'url' => 'https://github.com/wmde/WikimediaBadges',
-		'descriptionmsg' => 'wikimedia-badges-desc'
+		'description' => 'Extension which contains default themes to display badges on Wikimedia projects'
 	);
-
-	// i18n
-	$wgMessagesDirs['WikimediaBadges'] = __DIR__ . '/i18n';
 
 	// Hooks
 	$wgHooks['BeforePageDisplay'][] = 'WikimediaBadges\Hooks::onBeforePageDisplay';
