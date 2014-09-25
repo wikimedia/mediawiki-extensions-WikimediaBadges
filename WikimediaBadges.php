@@ -29,6 +29,8 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	include_once( __DIR__ . '/vendor/autoload.php' );
 }
 
+$GLOBALS['wgMessagesDirs']['WikimediaBadges'] = __DIR__ . '/i18n';
+
 $GLOBALS['wgExtensionFunctions'][] = function() {
 	global $wgExtensionCredits, $wgMessagesDirs, $wgHooks, $wgResourceModules;
 
@@ -40,9 +42,6 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 		'url' => 'https://github.com/wmde/WikimediaBadges',
 		'descriptionmsg' => 'wikimedia-badges-desc'
 	);
-
-	// i18n
-	$wgMessagesDirs['WikimediaBadges'] = __DIR__ . '/i18n';
 
 	// Hooks
 	$wgHooks['BeforePageDisplay'][] = 'WikimediaBadges\Hooks::onBeforePageDisplay';
