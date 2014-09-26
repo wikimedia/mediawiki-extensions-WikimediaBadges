@@ -40,7 +40,8 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 		'version' => WIKIMEDIA_BADGES_VERSION,
 		'author' => '[[mw:User:Bene*|Bene*]]',
 		'url' => 'https://github.com/wmde/WikimediaBadges',
-		'descriptionmsg' => 'wikimedia-badges-desc'
+		'descriptionmsg' => 'wikimedia-badges-desc',
+		'license-name' => 'GPL-2.0+'
 	);
 
 	// Hooks
