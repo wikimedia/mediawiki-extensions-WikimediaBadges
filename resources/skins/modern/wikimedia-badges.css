@@ -13,13 +13,15 @@
 	margin-left: 2px;
 }
 
-.badge-featuredarticle {
+.badge-featuredarticle,
+.badge-featuredlist {
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
 	margin-left: 2px;
 }
 
 .badge-goodarticle a,
-.badge-featuredarticle a {
+.badge-featuredarticle a,
+.badge-featuredlist a {
 	margin-left: -2px;
 }
