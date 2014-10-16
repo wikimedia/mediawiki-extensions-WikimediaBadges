@@ -12,7 +12,8 @@
 	list-style-image: url(../../images/badge-silver-star.png);
 }
 
-.portlet .badge-featuredarticle {
+.portlet .badge-featuredarticle,
+.portlet .badge-featuredlist {
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
 }

@@ -12,7 +12,8 @@
 	list-style-image: url(../../images/badge-silver-star.png);
 }
 
-.badge-featuredarticle {
+.badge-featuredarticle,
+.badge-featuredlist {
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
 }
