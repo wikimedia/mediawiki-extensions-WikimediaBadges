@@ -14,6 +14,7 @@
 }
 
 .badge-featuredarticle,
+.badge-featuredportal,
 .badge-featuredlist {
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
@@ -22,6 +23,7 @@
 
 .badge-goodarticle a,
 .badge-featuredarticle a,
+.badge-featuredportal a,
 .badge-featuredlist a {
 	margin-left: -2px;
 }
