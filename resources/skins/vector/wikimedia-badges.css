@@ -13,6 +13,7 @@
 }
 
 .badge-featuredarticle,
+.badge-featuredportal,
 .badge-featuredlist {
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
