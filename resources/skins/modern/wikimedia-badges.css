@@ -7,7 +7,8 @@
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 
-.badge-goodarticle {
+.badge-goodarticle,
+.badge-recommendedarticle {
 	/* @embed */
 	list-style-image: url(../../images/badge-silver-star.png);
 	margin-left: 2px;
@@ -24,6 +25,7 @@
 .badge-goodarticle a,
 .badge-featuredarticle a,
 .badge-featuredportal a,
-.badge-featuredlist a {
+.badge-featuredlist a,
+.badge-recommendedarticle a {
 	margin-left: -2px;
 }
