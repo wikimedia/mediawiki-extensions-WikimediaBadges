@@ -4,7 +4,6 @@ namespace WikimediaBadges;
 
 use OutputPage;
 use Skin;
-use Wikibase\Settings;
 
 /**
  * File defining the hook handlers for the WikimediaBadges extension.

@@ -18,7 +18,7 @@ return call_user_func( function() {
 
 	$modules = array(
 		'ext.wikimediaBadges' => $moduleTemplate + array(
-			'position' => 'top',
+			'position' => 'bottom',
 			'skinStyles' => array(
 				'vector' => 'skins/vector/wikimedia-badges.css',
 				'monobook' => 'skins/monobook/wikimedia-badges.css',
