@@ -21,3 +21,21 @@
 	content: url(../../images/badge-golden-star.png);
 	margin-right: .2em;
 }
+
+.badge-problematic:before {
+	/* @embed */
+	content: url(../../images/badge-problematic.png);
+	margin-right: .2em;
+}
+
+.badge-proofread:before {
+	/* @embed */
+	content: url(../../images/badge-proofread.png);
+	margin-right: .2em;
+}
+
+.badge-validated:before {
+	/* @embed */
+	content: url(../../images/badge-validated.png);
+	margin-right: .2em;
+}

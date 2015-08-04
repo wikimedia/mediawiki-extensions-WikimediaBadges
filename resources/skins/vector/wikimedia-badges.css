@@ -19,3 +19,18 @@
 	/* @embed */
 	list-style-image: url(../../images/badge-golden-star.png);
 }
+
+.badge-problematic {
+	/* @embed */
+	list-style-image: url(../../images/badge-problematic.png);
+}
+
+.badge-proofread {
+	/* @embed */
+	list-style-image: url(../../images/badge-proofread.png);
+}
+
+.badge-validated {
+	/* @embed */
+	list-style-image: url(../../images/badge-validated.png);
+}

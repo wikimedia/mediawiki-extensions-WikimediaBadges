@@ -22,10 +22,31 @@
 	margin-left: 2px;
 }
 
+.badge-problematic {
+	/* @embed */
+	list-style-image: url(../../images/badge-problematic.png);
+	margin-left: 2px;
+}
+
+.badge-proofread {
+	/* @embed */
+	list-style-image: url(../../images/badge-proofread.png);
+	margin-left: 2px;
+}
+
+.badge-validated {
+	/* @embed */
+	list-style-image: url(../../images/badge-validated.png);
+	margin-left: 2px;
+}
+
 .badge-goodarticle a,
 .badge-featuredarticle a,
 .badge-featuredportal a,
 .badge-featuredlist a,
-.badge-recommendedarticle a {
+.badge-recommendedarticle a,
+.badge-problematic a,
+.badge-proofread a,
+.badge-validated a {
 	margin-left: -2px;
 }
