@@ -28,7 +28,7 @@
 			"WikimediaBadges.php"
 		],
 		"classmap": [
-			"WikimediaBadges.hooks.php"
+			"includes/"
 		]
 	}
 }

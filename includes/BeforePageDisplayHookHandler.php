@@ -6,14 +6,14 @@ use OutputPage;
 use Skin;
 
 /**
- * File defining the hook handlers for the WikimediaBadges extension.
+ * Handler for the BeforePageDisplay hook.
  *
  * @since 0.1
  *
  * @license GNU GPL v2+
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
-final class Hooks {
+class BeforePageDisplayHookHandler {
 
 	/**
 	 * Handler for the BeforePageDisplay hook
