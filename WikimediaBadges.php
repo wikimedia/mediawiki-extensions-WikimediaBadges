@@ -32,10 +32,10 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 $GLOBALS['wgMessagesDirs']['WikimediaBadges'] = __DIR__ . '/i18n';
 
 $GLOBALS['wgExtensionFunctions'][] = function() {
-	global $wgExtensionCredits, $wgMessagesDirs, $wgHooks, $wgResourceModules;
+	global $wgExtensionCredits, $wgHooks, $wgResourceModules;
 
 	$wgExtensionCredits['wikibase'][] = array(
-		'path' => __DIR__,
+		'path' => __FILE__,
 		'name' => 'WikimediaBadges',
 		'version' => WIKIMEDIA_BADGES_VERSION,
 		'author' => '[https://www.mediawiki.org/wiki/User:Bene* Bene*]',
