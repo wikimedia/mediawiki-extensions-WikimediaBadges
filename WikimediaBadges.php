@@ -31,6 +31,16 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 
 $GLOBALS['wgMessagesDirs']['WikimediaBadges'] = __DIR__ . '/i18n';
 
+/**
+ * The Property id of the commons category property.
+ * This is used to construct the link target for the other projects
+ * sidebar link to Wikimedia Commons.
+ *
+ * Set this to null in order to disable the other projects
+ * sidebar replacement.
+ */
+$GLOBALS['wgWikimediaBadgesCommonsCategoryProperty'] = 'P373';
+
 $GLOBALS['wgExtensionFunctions'][] = function() {
 	global $wgExtensionCredits, $wgHooks, $wgResourceModules;
 
@@ -38,7 +48,7 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 		'path' => __FILE__,
 		'name' => 'WikimediaBadges',
 		'version' => WIKIMEDIA_BADGES_VERSION,
-		'author' => '[https://www.mediawiki.org/wiki/User:Bene* Bene*]',
+		'author' => array( '[https://www.mediawiki.org/wiki/User:Bene* Bene*]', 'Marius Hoch' ),
 		'url' => 'https://github.com/wmde/WikimediaBadges',
 		'descriptionmsg' => 'wikimedia-badges-desc',
 		'license-name' => 'GPL-2.0+'
@@ -46,6 +56,7 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 
 	// Hooks
 	$wgHooks['BeforePageDisplay'][] = 'WikimediaBadges\BeforePageDisplayHookHandler::onBeforePageDisplay';
+	$wgHooks['WikibaseClientOtherProjectsSidebar'][] = 'WikimediaBadges\OtherProjectsSidebarHookHandler::addToSidebar';
 
 	// Register phpunit tests
 	$wgHooks['UnitTestsList'][] = function( array &$files ) {
