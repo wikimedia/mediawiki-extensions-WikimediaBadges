@@ -45,7 +45,12 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 	);
 
 	// Hooks
-	$wgHooks['BeforePageDisplay'][] = 'WikimediaBadges\Hooks::onBeforePageDisplay';
+	$wgHooks['BeforePageDisplay'][] = 'WikimediaBadges\BeforePageDisplayHookHandler::onBeforePageDisplay';
+
+	// Register phpunit tests
+	$wgHooks['UnitTestsList'][] = function( array &$files ) {
+		$files[] =  __DIR__ . '/tests/phpunit';
+	};
 
 	// Resource Loader modules
 	$wgResourceModules = array_merge( $wgResourceModules, include __DIR__ . '/resources/Resources.php' );
