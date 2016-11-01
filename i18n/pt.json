@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"Hamilton Abreu"
 		]
 	},
-	"wikimediabadges-desc": "Temas padrão para exibir emblemas nos projetos da Wikimedia"
+	"wikimediabadges-desc": "Temas padrão para apresentar emblemas nos projetos da Wikimedia"
 }
