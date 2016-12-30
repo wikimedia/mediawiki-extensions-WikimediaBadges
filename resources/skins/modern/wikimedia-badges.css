@@ -40,6 +40,12 @@
 	margin-left: 2px;
 }
 
+.badge-digitaldocument {
+	/* @embed */
+	list-style-image: url(../../images/badge-digitaldocument.png);
+	margin-left: 2px;
+}
+
 .badge-goodarticle a,
 .badge-featuredarticle a,
 .badge-featuredportal a,
@@ -47,6 +53,7 @@
 .badge-recommendedarticle a,
 .badge-problematic a,
 .badge-proofread a,
-.badge-validated a {
+.badge-validated a,
+.badge-digitaldocument a {
 	margin-left: -2px;
 }

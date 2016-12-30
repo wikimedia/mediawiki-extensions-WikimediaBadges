@@ -34,3 +34,8 @@
 	/* @embed */
 	list-style-image: url(../../images/badge-validated.png);
 }
+
+.badge-digitaldocument {
+	/* @embed */
+	list-style-image: url(../../images/badge-digitaldocument.png);
+}

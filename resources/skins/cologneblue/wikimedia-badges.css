@@ -39,3 +39,9 @@
 	content: url(../../images/badge-validated.png);
 	margin-right: .2em;
 }
+
+.badge-digitaldocument:before {
+	/* @embed */
+	content: url(../../images/badge-digitaldocument.png);
+	margin-right: .2em;
+}
