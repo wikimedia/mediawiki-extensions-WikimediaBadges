@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kwj2772"
+			"Kwj2772",
+			"아라"
 		]
 	},
-	"wikimediabadges-desc": "위키미디어 프로젝트의 배지를 표시하기 위한 기본 테마"
+	"wikimediabadges-desc": "위키미디어 프로젝트의 배지를 표시할 기본 테마"
 }
