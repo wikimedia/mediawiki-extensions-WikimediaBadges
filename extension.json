@@ -1,0 +1,40 @@
+{
+	"name": "WikimediaBadges",
+	"version": "0.1 alpha",
+	"author": [
+		"[https://www.mediawiki.org/wiki/User:Bene* Bene*]",
+		"Marius Hoch"
+	],
+	"url": "https://github.com/wmde/WikimediaBadges",
+	"descriptionmsg": "wikimediabadges-desc",
+	"license-name": "GPL-2.0+",
+	"type": "wikibase",
+	"MessagesDirs": {
+		"WikimediaBadges": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.wikimediaBadges": {
+			"position": "bottom",
+			"skinStyles": {
+				"vector": "skins/vector/wikimedia-badges.css",
+				"monobook": "skins/monobook/wikimedia-badges.css",
+				"cologneblue": "skins/cologneblue/wikimedia-badges.css",
+				"modern": "skins/modern/wikimedia-badges.css"
+			}
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "WikimediaBadges/resources"
+	},
+	"Hooks": {
+		"BeforePageDisplay": "WikimediaBadges\\BeforePageDisplayHookHandler::onBeforePageDisplay",
+		"WikibaseClientOtherProjectsSidebar": "WikimediaBadges\\OtherProjectsSidebarHookHandler::addToSidebar"
+	},
+	"config": {
+		"WikimediaBadgesCommonsCategoryProperty": "P373"
+	},
+	"manifest_version": 1
+}
