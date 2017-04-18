@@ -10,7 +10,7 @@
 .badge-goodarticle,
 .badge-recommendedarticle {
 	/* @embed */
-	list-style-image: url(../../images/badge-silver-star.png);
+	list-style-image: url( ../../images/badge-silver-star.png );
 	margin-left: 2px;
 }
 
@@ -18,31 +18,31 @@
 .badge-featuredportal,
 .badge-featuredlist {
 	/* @embed */
-	list-style-image: url(../../images/badge-golden-star.png);
+	list-style-image: url( ../../images/badge-golden-star.png );
 	margin-left: 2px;
 }
 
 .badge-problematic {
 	/* @embed */
-	list-style-image: url(../../images/badge-problematic.png);
+	list-style-image: url( ../../images/badge-problematic.png );
 	margin-left: 2px;
 }
 
 .badge-proofread {
 	/* @embed */
-	list-style-image: url(../../images/badge-proofread.png);
+	list-style-image: url( ../../images/badge-proofread.png );
 	margin-left: 2px;
 }
 
 .badge-validated {
 	/* @embed */
-	list-style-image: url(../../images/badge-validated.png);
+	list-style-image: url( ../../images/badge-validated.png );
 	margin-left: 2px;
 }
 
 .badge-digitaldocument {
 	/* @embed */
-	list-style-image: url(../../images/badge-digitaldocument.png);
+	list-style-image: url( ../../images/badge-digitaldocument.png );
 	margin-left: 2px;
 }
 

@@ -10,32 +10,32 @@
 .portlet .badge-goodarticle,
 .portlet .badge-recommendedarticle {
 	/* @embed */
-	list-style-image: url(../../images/badge-silver-star.png);
+	list-style-image: url( ../../images/badge-silver-star.png );
 }
 
 .portlet .badge-featuredarticle,
 .portlet .badge-featuredportal,
 .portlet .badge-featuredlist {
 	/* @embed */
-	list-style-image: url(../../images/badge-golden-star.png);
+	list-style-image: url( ../../images/badge-golden-star.png );
 }
 
 .portlet .badge-problematic {
 	/* @embed */
-	list-style-image: url(../../images/badge-problematic.png);
+	list-style-image: url( ../../images/badge-problematic.png );
 }
 
 .portlet .badge-proofread {
 	/* @embed */
-	list-style-image: url(../../images/badge-proofread.png);
+	list-style-image: url( ../../images/badge-proofread.png );
 }
 
 .portlet .badge-validated {
 	/* @embed */
-	list-style-image: url(../../images/badge-validated.png);
+	list-style-image: url( ../../images/badge-validated.png );
 }
 
 .portlet .badge-digitaldocument {
 	/* @embed */
-	list-style-image: url(../../images/badge-digitaldocument.png);
+	list-style-image: url( ../../images/badge-digitaldocument.png );
 }
