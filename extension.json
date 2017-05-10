@@ -5,7 +5,7 @@
 		"[https://www.mediawiki.org/wiki/User:Bene* Bene*]",
 		"Marius Hoch"
 	],
-	"url": "https://github.com/wmde/WikimediaBadges",
+	"url": "https://phabricator.wikimedia.org/diffusion/EWMB/",
 	"descriptionmsg": "wikimediabadges-desc",
 	"license-name": "GPL-2.0+",
 	"type": "wikibase",
