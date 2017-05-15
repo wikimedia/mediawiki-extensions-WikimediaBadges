@@ -116,14 +116,14 @@ class OtherProjectsSidebarHookHandler {
 			return;
 		}
 
-		$sidebar['commons'] = array(
-			'commonswiki' => array(
+		$sidebar['commons'] = [
+			'commonswiki' => [
 				'msg' => 'wikibase-otherprojects-commons',
 				'class' => 'wb-otherproject-link wb-otherproject-commons',
 				'href' => $href,
 				'hreflang' => 'en'
-			)
-		);
+			],
+		];
 	}
 
 	/**
@@ -199,7 +199,7 @@ class OtherProjectsSidebarHookHandler {
 	private function getItem( ItemId $itemId ) {
 		try {
 			$item = $this->entityLookup->getEntity( $itemId );
-		} catch( EntityLookupException $ex ) {
+		} catch ( EntityLookupException $ex ) {
 			wfLogWarning(
 				"Failed to load Item $itemId: " . $ex->getMessage()
 			);

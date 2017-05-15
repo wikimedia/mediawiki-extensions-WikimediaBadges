@@ -45,77 +45,77 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function doAddToSidebarProvider() {
-		$wikiquoteLink = array(
+		$wikiquoteLink = [
 			'msg' => 'wikibase-otherprojects-wikiquote',
 			'class' => 'wb-otherproject-link wb-otherproject-wikiquote',
 			'href' => 'https://en.wikiquote.org/wiki/Ams',
 			'hreflang' => 'en'
-		);
-		$oldCommonsLink = array(
+		];
+		$oldCommonsLink = [
 			'msg' => 'wikibase-otherprojects-commons',
 			'class' => 'wb-otherproject-link wb-otherproject-commons',
 			'href' => 'https://commons.wikimedia.org/wiki/Amsterdam',
 			'hreflang' => 'en'
-		);
+		];
 		$newCommonsLink = $oldCommonsLink;
 		$newCommonsLink['href'] = 'https://commons.wikimedia.org/wiki/Category:Amsterdam';
 
-		return array(
-			'Item without commons category statement' => array(
-				array(),
-				array(),
+		return [
+			'Item without commons category statement' => [
+				[],
+				[],
 				new ItemId( 'Q2013' )
-			),
-			'Sidebar without commons link gets amended' => array(
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $newCommonsLink )
-				),
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink )
-				),
+			],
+			'Sidebar without commons link gets amended' => [
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $newCommonsLink ]
+				],
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ]
+				],
 				new ItemId( 'Q123' )
-			),
-			'Empty sidebar gets amended' => array(
-				array( 'commons' => array( 'commonswiki' => $newCommonsLink ) ),
-				array(),
+			],
+			'Empty sidebar gets amended' => [
+				[ 'commons' => [ 'commonswiki' => $newCommonsLink ] ],
+				[],
 				new ItemId( 'Q123' )
-			),
-			'Existing commons link gets amended' => array(
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $newCommonsLink )
-				),
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $oldCommonsLink )
-				),
+			],
+			'Existing commons link gets amended' => [
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $newCommonsLink ]
+				],
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $oldCommonsLink ]
+				],
 				new ItemId( 'Q123' )
-			),
-			'No such item' => array(
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $oldCommonsLink )
-				),
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $oldCommonsLink )
-				),
+			],
+			'No such item' => [
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $oldCommonsLink ]
+				],
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $oldCommonsLink ]
+				],
 				new ItemId( 'Q404' )
-			),
-			'Item loading failed' => array(
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $oldCommonsLink )
-				),
-				array(
-					'wikiquote' => array( 'enwikiquote' => $wikiquoteLink ),
-					'commons' => array( 'commonswiki' => $oldCommonsLink )
-				),
+			],
+			'Item loading failed' => [
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $oldCommonsLink ]
+				],
+				[
+					'wikiquote' => [ 'enwikiquote' => $wikiquoteLink ],
+					'commons' => [ 'commonswiki' => $oldCommonsLink ]
+				],
 				new ItemId( 'Q503' ),
 				'suppress'
-			),
-		);
+			],
+		];
 	}
 
 	public function testDoAddToSidebar_disabled() {
@@ -128,7 +128,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 			null
 		);
 
-		$sidebar = array( 101010 => array( 'blah' ) );
+		$sidebar = [ 101010 => [ 'blah' ] ];
 		$origSidebar = $sidebar;
 		$this->assertTrue( $handler->doAddToSidebar( new ItemId( 'Q42' ), $sidebar ) );
 		$this->assertSame( $origSidebar, $sidebar );
@@ -147,11 +147,12 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function constructor_invalidSettingProvider() {
-		return array(
-			array( array( ':(' ) ),
-			array( function() {} ),
-			array( false )
-		);
+		return [
+			[ [ ':(' ] ],
+			[ function() {
+			} ],
+			[ false ],
+		];
 	}
 
 	public function testDoAddToSidebar_invalidDataValue() {
@@ -168,7 +169,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 			'P12'
 		);
 
-		$sidebar = array( 101010 => array( 'blah' ) );
+		$sidebar = [ 101010 => [ 'blah' ] ];
 		$origSidebar = $sidebar;
 
 		\MediaWiki\suppressWarnings();
@@ -181,7 +182,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	public function testAddToSidebar() {
 		// Integration test: Make sure this doesn't fatal
 		$this->setMwGlobals( 'wgWikimediaBadgesCommonsCategoryProperty', null );
-		$sidebar = array();
+		$sidebar = [];
 
 		$this->assertTrue(
 			OtherProjectsSidebarHookHandler::addToSidebar( new ItemId( 'Q38434234' ), $sidebar )

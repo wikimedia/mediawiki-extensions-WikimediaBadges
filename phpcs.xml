@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="WikibaseMediaInfo">
+	<rule ref="vendor/wikibase/wikibase-codesniffer/Wikibase" />
+
+	<!-- Exceptions -->
+
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="113" />
+		</properties>
+	</rule>
+
+	<file>.</file>
+</ruleset>
