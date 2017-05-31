@@ -8,10 +8,12 @@ use MediaWikiTestCase;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
+use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\DataModel\Snak\PropertySomeValueSnak;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Services\Lookup\InMemoryEntityLookup;
 use Wikibase\DataModel\Services\Lookup\EntityLookupException;
+use Wikimedia\Assert\ParameterTypeException;
 use WikimediaBadges\OtherProjectsSidebarHookHandler;
 
 /**
@@ -119,7 +121,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function testDoAddToSidebar_disabled() {
-		$entityLookup = $this->getMock( 'Wikibase\DataModel\Services\Lookup\EntityLookup' );
+		$entityLookup = $this->getMock( EntityLookup::class );
 		$entityLookup->expects( $this->never() )
 			->method( 'getEntity' );
 
@@ -138,10 +140,10 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider constructor_invalidSettingProvider
 	 */
 	public function testConstructor_invalidSetting( $value ) {
-		$this->setExpectedException( 'Wikimedia\Assert\ParameterTypeException' );
+		$this->setExpectedException( ParameterTypeException::class );
 
 		new OtherProjectsSidebarHookHandler(
-			$this->getMock( 'Wikibase\DataModel\Services\Lookup\EntityLookup' ),
+			$this->getMock( EntityLookup::class ),
 			$value
 		);
 	}

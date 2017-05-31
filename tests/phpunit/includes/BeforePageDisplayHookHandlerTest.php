@@ -2,6 +2,7 @@
 
 namespace WikimediaBadges\Tests;
 
+use OutputPage;
 use PHPUnit_Framework_TestCase;
 use SkinTemplate;
 use WikimediaBadges\BeforePageDisplayHookHandler;
@@ -18,7 +19,7 @@ class BeforePageDisplayHookHandlerTest extends PHPUnit_Framework_TestCase {
 
 	public function testOnBeforePageDisplay() {
 		$skin = new SkinTemplate();
-		$out = $this->getMockBuilder( 'OutputPage' )
+		$out = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$out->expects( $this->once() )
