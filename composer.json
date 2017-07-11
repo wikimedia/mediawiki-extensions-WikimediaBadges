@@ -8,7 +8,7 @@
 		"Wikibase"
 	],
 	"homepage": "https://github.com/wmde/WikimediaBadges",
-	"license": "GNU GPL v2+",
+	"license": "GPL-2.0+",
 	"authors": [
 		{
 			"name": "Bene*",
