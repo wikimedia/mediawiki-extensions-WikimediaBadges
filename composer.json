@@ -2,7 +2,7 @@
 	"name": "wikibase/wikimedia-badges",
 	"description": "Extension which contains default themes to display badges on Wikimedia projects",
 	"type": "mediawiki-extension",
-	"version": "0.1-alpha",
+	"version": "1.0.0",
 	"keywords": [
 		"Wikidata",
 		"Wikibase"
@@ -36,6 +36,7 @@
 	"scripts": {
 		"fix": "phpcbf",
 		"test": [
+			"@validate --no-interaction",
 			"parallel-lint . --exclude vendor",
 			"phpcs -p -s"
 		]
