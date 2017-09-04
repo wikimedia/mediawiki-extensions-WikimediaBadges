@@ -11,6 +11,7 @@ use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\DataModel\Services\Lookup\EntityLookupException;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\Client\WikibaseClient;
+use Wikibase\DataModel\Snak\Snak;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterTypeException;
 
@@ -54,33 +55,29 @@ class OtherProjectsSidebarHookHandler {
 	 * @throws ParameterTypeException
 	 */
 	public function __construct( EntityLookup $entityLookup, $commonsCategoryPropertySetting ) {
-		Assert::parameterType( 'string|null', $commonsCategoryPropertySetting, '$commonsCategoryPropertySetting' );
+		Assert::parameterType(
+			'string|null',
+			$commonsCategoryPropertySetting,
+			'$commonsCategoryPropertySetting'
+		);
 
 		$this->entityLookup = $entityLookup;
 		$this->commonsCategoryPropertySetting = $commonsCategoryPropertySetting;
 	}
 
 	/**
-	 * @since 0.1
-	 *
 	 * @param ItemId $itemId
 	 * @param array &$sidebar
-	 *
-	 * @return bool
 	 */
 	public static function addToSidebar( ItemId $itemId, array &$sidebar ) {
 		$self = self::newFromGlobalState();
 
-		return $self->doAddToSidebar( $itemId, $sidebar );
+		$self->doAddToSidebar( $itemId, $sidebar );
 	}
 
 	/**
-	 * @since 0.1
-	 *
 	 * @param ItemId $itemId
 	 * @param array &$sidebar
-	 *
-	 * @return bool
 	 */
 	public function doAddToSidebar( ItemId $itemId, array &$sidebar ) {
 		if ( $this->commonsCategoryPropertySetting !== null
@@ -90,8 +87,6 @@ class OtherProjectsSidebarHookHandler {
 				$this->handleCategoryName( $categoryName, $sidebar );
 			}
 		}
-
-		return true;
 	}
 
 	/**

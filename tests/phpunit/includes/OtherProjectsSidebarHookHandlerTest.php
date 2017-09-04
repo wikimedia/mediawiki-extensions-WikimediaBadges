@@ -29,7 +29,12 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider doAddToSidebarProvider
 	 */
-	public function testDoAddToSidebar( array $expected, array $sidebar, ItemId $itemId, $suppressErrors = false ) {
+	public function testDoAddToSidebar(
+		array $expected,
+		array $sidebar,
+		ItemId $itemId,
+		$suppressErrors = false
+	) {
 		$handler = new OtherProjectsSidebarHookHandler(
 			$this->getEntityLookup(),
 			'P373'
@@ -38,7 +43,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 		if ( $suppressErrors === 'suppress' ) {
 			\MediaWiki\suppressWarnings();
 		}
-		$this->assertTrue( $handler->doAddToSidebar( $itemId, $sidebar ) );
+		$handler->doAddToSidebar( $itemId, $sidebar );
 		if ( $suppressErrors === 'suppress' ) {
 			\MediaWiki\restoreWarnings();
 		}
@@ -132,7 +137,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 
 		$sidebar = [ 101010 => [ 'blah' ] ];
 		$origSidebar = $sidebar;
-		$this->assertTrue( $handler->doAddToSidebar( new ItemId( 'Q42' ), $sidebar ) );
+		$handler->doAddToSidebar( new ItemId( 'Q42' ), $sidebar );
 		$this->assertSame( $origSidebar, $sidebar );
 	}
 
@@ -175,7 +180,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 		$origSidebar = $sidebar;
 
 		\MediaWiki\suppressWarnings();
-		$this->assertTrue( $handler->doAddToSidebar( new ItemId( 'Q123' ), $sidebar ) );
+		$handler->doAddToSidebar( new ItemId( 'Q123' ), $sidebar );
 		\MediaWiki\restoreWarnings();
 
 		$this->assertSame( $origSidebar, $sidebar );
@@ -186,9 +191,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgWikimediaBadgesCommonsCategoryProperty', null );
 		$sidebar = [];
 
-		$this->assertTrue(
-			OtherProjectsSidebarHookHandler::addToSidebar( new ItemId( 'Q38434234' ), $sidebar )
-		);
+		OtherProjectsSidebarHookHandler::addToSidebar( new ItemId( 'Q38434234' ), $sidebar );
 	}
 
 	private function getEntityLookup() {
