@@ -31,14 +31,19 @@
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "0.9.2",
 		"jakub-onderka/php-console-highlighter": "0.3.2",
-		"wikibase/wikibase-codesniffer": "^0.2.0"
+		"wikibase/wikibase-codesniffer": "^0.2.0",
+		"mediawiki/minus-x": "0.2.0"
 	},
 	"scripts": {
-		"fix": "phpcbf",
+		"fix": [
+			"phpcbf",
+			"minus-x fix ."
+		],
 		"test": [
 			"composer validate --no-interaction",
 			"parallel-lint . --exclude vendor",
-			"phpcs -p -s"
+			"phpcs -p -s",
+			"minus-x check ."
 		]
 	}
 }
