@@ -14,6 +14,10 @@
 			"i18n"
 		]
 	},
+	"AutoloadClasses": {
+		"WikimediaBadges\\BeforePageDisplayHookHandler": "includes/BeforePageDisplayHookHandler.php",
+		"WikimediaBadges\\OtherProjectsSidebarHookHandler": "includes/OtherProjectsSidebarHookHandler.php"
+	},
 	"ResourceModules": {
 		"ext.wikimediaBadges": {
 			"position": "bottom",
