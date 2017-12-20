@@ -14,9 +14,11 @@
 			"i18n"
 		]
 	},
-	"AutoloadClasses": {
-		"WikimediaBadges\\BeforePageDisplayHookHandler": "includes/BeforePageDisplayHookHandler.php",
-		"WikimediaBadges\\OtherProjectsSidebarHookHandler": "includes/OtherProjectsSidebarHookHandler.php"
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
+	"AutoloadNamespaces": {
+		"WikimediaBadges\\": "includes/"
 	},
 	"ResourceModules": {
 		"ext.wikimediaBadges": {
