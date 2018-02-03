@@ -22,7 +22,6 @@
 	},
 	"ResourceModules": {
 		"ext.wikimediaBadges": {
-			"position": "bottom",
 			"skinStyles": {
 				"vector": "skins/vector/wikimedia-badges.css",
 				"monobook": "skins/monobook/wikimedia-badges.css",
