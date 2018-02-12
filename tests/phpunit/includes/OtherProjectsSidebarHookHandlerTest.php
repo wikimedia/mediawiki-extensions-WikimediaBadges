@@ -41,11 +41,11 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 		);
 
 		if ( $suppressErrors === 'suppress' ) {
-			\MediaWiki\suppressWarnings();
+			\Wikimedia\suppressWarnings();
 		}
 		$handler->doAddToSidebar( $itemId, $sidebar );
 		if ( $suppressErrors === 'suppress' ) {
-			\MediaWiki\restoreWarnings();
+			\Wikimedia\restoreWarnings();
 		}
 
 		$this->assertSame( $expected, $sidebar );
@@ -179,9 +179,9 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 		$sidebar = [ 101010 => [ 'blah' ] ];
 		$origSidebar = $sidebar;
 
-		\MediaWiki\suppressWarnings();
+		\Wikimedia\suppressWarnings();
 		$handler->doAddToSidebar( new ItemId( 'Q123' ), $sidebar );
-		\MediaWiki\restoreWarnings();
+		\Wikimedia\restoreWarnings();
 
 		$this->assertSame( $origSidebar, $sidebar );
 	}
