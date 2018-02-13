@@ -21,7 +21,7 @@ use WikimediaBadges\OtherProjectsSidebarHookHandler;
  *
  * @group WikimediaBadges
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Marius Hoch < hoo@online.de >
  */
 class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
