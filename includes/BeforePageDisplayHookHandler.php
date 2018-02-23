@@ -21,7 +21,7 @@ class BeforePageDisplayHookHandler {
 	 * @param OutputPage $out
 	 * @param Skin $skin
 	 */
-	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
+	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$out->addModuleStyles( 'ext.wikimediaBadges' );
 	}
 

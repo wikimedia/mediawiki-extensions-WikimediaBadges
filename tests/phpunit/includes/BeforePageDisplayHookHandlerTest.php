@@ -3,7 +3,7 @@
 namespace WikimediaBadges\Tests;
 
 use OutputPage;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SkinTemplate;
 use WikimediaBadges\BeforePageDisplayHookHandler;
 
@@ -15,7 +15,7 @@ use WikimediaBadges\BeforePageDisplayHookHandler;
  * @license GPL-2.0-or-later
  * @author Marius Hoch < hoo@online.de >
  */
-class BeforePageDisplayHookHandlerTest extends PHPUnit_Framework_TestCase {
+class BeforePageDisplayHookHandlerTest extends TestCase {
 
 	public function testOnBeforePageDisplay() {
 		$skin = new SkinTemplate();
