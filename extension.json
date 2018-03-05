@@ -3,9 +3,9 @@
 	"version": "1.0.0",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Bene* Bene*]",
-		"Marius Hoch"
+		"[https://www.mediawiki.org/wiki/User:Hoo_man Marius Hoch]"
 	],
-	"url": "https://phabricator.wikimedia.org/diffusion/EWMB/",
+	"url": "https://www.mediawiki.org/wiki/Extension:WikimediaBadges",
 	"descriptionmsg": "wikimediabadges-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "wikibase",
