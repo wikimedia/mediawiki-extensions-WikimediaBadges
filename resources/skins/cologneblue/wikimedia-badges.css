@@ -8,6 +8,7 @@
  */
 
 .badge-goodarticle:before,
+.badge-goodlist:before,
 .badge-recommendedarticle:before {
 	/* @embed */
 	content: url( ../../images/badge-silver-star.png );
