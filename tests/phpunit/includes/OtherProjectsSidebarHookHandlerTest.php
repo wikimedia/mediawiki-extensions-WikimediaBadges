@@ -192,6 +192,8 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 		$sidebar = [];
 
 		OtherProjectsSidebarHookHandler::addToSidebar( new ItemId( 'Q38434234' ), $sidebar );
+		// No exception thrown
+		$this->assertTrue( true );
 	}
 
 	private function getEntityLookup() {
