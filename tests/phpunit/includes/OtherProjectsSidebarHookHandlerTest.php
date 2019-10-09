@@ -126,7 +126,7 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function testDoAddToSidebar_disabled() {
-		$entityLookup = $this->getMock( EntityLookup::class );
+		$entityLookup = $this->createMock( EntityLookup::class );
 		$entityLookup->expects( $this->never() )
 			->method( 'getEntity' );
 
@@ -145,10 +145,10 @@ class OtherProjectsSidebarHookHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider constructor_invalidSettingProvider
 	 */
 	public function testConstructor_invalidSetting( $value ) {
-		$this->setExpectedException( ParameterTypeException::class );
+		$this->expectException( ParameterTypeException::class );
 
 		new OtherProjectsSidebarHookHandler(
-			$this->getMock( EntityLookup::class ),
+			$this->createMock( EntityLookup::class ),
 			$value
 		);
 	}
