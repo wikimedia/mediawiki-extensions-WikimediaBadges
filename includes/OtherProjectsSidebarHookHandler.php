@@ -4,13 +4,13 @@ namespace WikimediaBadges;
 
 use DataValues\StringValue;
 use RequestContext;
+use Wikibase\Client\WikibaseClient;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\DataModel\Services\Lookup\EntityLookupException;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
-use Wikibase\Client\WikibaseClient;
 use Wikibase\DataModel\Snak\Snak;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterTypeException;

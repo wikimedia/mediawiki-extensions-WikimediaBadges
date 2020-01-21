@@ -2,17 +2,17 @@
 
 namespace WikimediaBadges\Tests;
 
-use DataValues\StringValue;
 use DataValues\DecimalValue;
+use DataValues\StringValue;
 use MediaWikiTestCase;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
+use Wikibase\DataModel\Services\Lookup\EntityLookupException;
+use Wikibase\DataModel\Services\Lookup\InMemoryEntityLookup;
 use Wikibase\DataModel\Snak\PropertySomeValueSnak;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
-use Wikibase\DataModel\Services\Lookup\InMemoryEntityLookup;
-use Wikibase\DataModel\Services\Lookup\EntityLookupException;
 use Wikimedia\Assert\ParameterTypeException;
 use WikimediaBadges\OtherProjectsSidebarHookHandler;
 
