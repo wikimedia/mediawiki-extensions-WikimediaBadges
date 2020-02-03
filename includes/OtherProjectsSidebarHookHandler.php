@@ -67,7 +67,7 @@ class OtherProjectsSidebarHookHandler {
 
 	/**
 	 * @param ItemId $itemId
-	 * @param array &$sidebar
+	 * @param array[] &$sidebar
 	 */
 	public static function addToSidebar( ItemId $itemId, array &$sidebar ) {
 		$self = self::newFromGlobalState();
@@ -77,7 +77,7 @@ class OtherProjectsSidebarHookHandler {
 
 	/**
 	 * @param ItemId $itemId
-	 * @param array &$sidebar
+	 * @param array[] &$sidebar
 	 */
 	public function doAddToSidebar( ItemId $itemId, array &$sidebar ) {
 		if ( $this->commonsCategoryPropertySetting !== null
@@ -91,7 +91,7 @@ class OtherProjectsSidebarHookHandler {
 
 	/**
 	 * @param string $categoryName
-	 * @param array &$sidebar
+	 * @param array[] &$sidebar
 	 */
 	private function handleCategoryName( $categoryName, array &$sidebar ) {
 		$href = 'https://commons.wikimedia.org/wiki/Category:' .
@@ -102,7 +102,7 @@ class OtherProjectsSidebarHookHandler {
 
 	/**
 	 * @param string $href Link to the commons category
-	 * @param array &$sidebar
+	 * @param array[] &$sidebar
 	 */
 	private function modifyOrAddEntry( $href, array &$sidebar ) {
 		if ( isset( $sidebar['commons']['commonswiki'] ) ) {
@@ -193,6 +193,7 @@ class OtherProjectsSidebarHookHandler {
 	 */
 	private function getItem( ItemId $itemId ) {
 		try {
+			/** @var Item|null $item */
 			$item = $this->entityLookup->getEntity( $itemId );
 		} catch ( EntityLookupException $ex ) {
 			wfLogWarning(
