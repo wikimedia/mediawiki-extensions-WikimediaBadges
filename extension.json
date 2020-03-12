@@ -23,7 +23,6 @@
 		"ext.wikimediaBadges": {
 			"targets": [ "desktop", "mobile" ],
 			"skinStyles": {
-				"default": "",
 				"vector": "skins/vector/wikimedia-badges.css",
 				"monobook": "skins/monobook/wikimedia-badges.css",
 				"cologneblue": "skins/cologneblue/wikimedia-badges.css",
