@@ -21,7 +21,10 @@
 	},
 	"ResourceModules": {
 		"ext.wikimediaBadges": {
-			"targets": [ "desktop", "mobile" ],
+			"targets": [
+				"desktop",
+				"mobile"
+			],
 			"skinStyles": {
 				"vector": "skins/vector/wikimedia-badges.css",
 				"monobook": "skins/monobook/wikimedia-badges.css",
@@ -39,7 +42,9 @@
 		"WikibaseClientOtherProjectsSidebar": "WikimediaBadges\\OtherProjectsSidebarHookHandler::addToSidebar"
 	},
 	"config": {
-		"WikimediaBadgesCommonsCategoryProperty": "P373"
+		"WikimediaBadgesCommonsCategoryProperty": {
+			"value": "P373"
+		}
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }
