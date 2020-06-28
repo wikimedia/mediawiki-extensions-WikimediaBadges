@@ -39,7 +39,7 @@
 	},
 	"Hooks": {
 		"BeforePageDisplay": "WikimediaBadges\\BeforePageDisplayHookHandler::onBeforePageDisplay",
-		"WikibaseClientOtherProjectsSidebar": "WikimediaBadges\\OtherProjectsSidebarHookHandler::addToSidebar"
+		"WikibaseClientSiteLinksForItem": "WikimediaBadges\\WikibaseClientSiteLinksForItemHandler::provideSiteLinks"
 	},
 	"config": {
 		"WikimediaBadgesCommonsCategoryProperty": {
