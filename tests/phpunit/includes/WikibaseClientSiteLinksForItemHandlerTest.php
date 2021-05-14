@@ -110,7 +110,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
 	public function constructor_invalidSettingProvider() {
 		return [
 			[ [ ':(' ] ],
-			[ function () {
+			[ static function () {
 			} ],
 			[ false ],
 		];
