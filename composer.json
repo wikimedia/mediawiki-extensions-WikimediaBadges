@@ -18,7 +18,7 @@
 		}
 	],
 	"support": {
-		"irc": "irc://irc.freenode.net/wikidata"
+		"irc": "irc://irc.libera.chat/wikidata"
 	},
 	"require": {
 		"php": ">=5.5.9"
