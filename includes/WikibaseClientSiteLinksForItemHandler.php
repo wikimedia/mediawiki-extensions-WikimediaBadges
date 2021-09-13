@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace WikimediaBadges;
 
 use DataValues\StringValue;
@@ -11,8 +13,6 @@ use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\SiteLink;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Snak\Snak;
-use Wikimedia\Assert\Assert;
-use Wikimedia\Assert\ParameterTypeException;
 
 /**
  * Handler for the WikibaseClientSiteLinksForItem hook that changes the link
@@ -30,27 +30,13 @@ class WikibaseClientSiteLinksForItemHandler {
 	 */
 	private $commonsCategoryPropertySetting;
 
-	/**
-	 * @return self
-	 */
-	private static function newFromGlobalState() {
+	private static function newFromGlobalState(): self {
 		return new self(
 			RequestContext::getMain()->getConfig()->get( 'WikimediaBadgesCommonsCategoryProperty' )
 		);
 	}
 
-	/**
-	 * @param string|null $commonsCategoryPropertySetting
-	 *
-	 * @throws ParameterTypeException
-	 */
-	public function __construct( $commonsCategoryPropertySetting ) {
-		Assert::parameterType(
-			'string|null',
-			$commonsCategoryPropertySetting,
-			'$commonsCategoryPropertySetting'
-		);
-
+	public function __construct( ?string $commonsCategoryPropertySetting ) {
 		$this->commonsCategoryPropertySetting = $commonsCategoryPropertySetting;
 	}
 
@@ -61,7 +47,7 @@ class WikibaseClientSiteLinksForItemHandler {
 	 */
 	public static function provideSiteLinks(
 		Item $item, array &$siteLinks, UsageAccumulator $usageAccumulator
-	) {
+	): void {
 		$self = self::newFromGlobalState();
 
 		$self->doProvideSiteLinks( $item, $siteLinks );
@@ -71,7 +57,7 @@ class WikibaseClientSiteLinksForItemHandler {
 	 * @param Item $item
 	 * @param SiteLink[] &$siteLinks
 	 */
-	public function doProvideSiteLinks( Item $item, array &$siteLinks ) {
+	public function doProvideSiteLinks( Item $item, array &$siteLinks ): void {
 		if ( $this->commonsCategoryPropertySetting !== null ) {
 			$categoryName = $this->getCommonsCategoryName( $item );
 			if ( $categoryName !== null ) {
@@ -84,16 +70,11 @@ class WikibaseClientSiteLinksForItemHandler {
 	 * @param string $categoryName
 	 * @param SiteLink[] &$siteLinks
 	 */
-	private function handleCategoryName( $categoryName, array &$siteLinks ) {
+	private function handleCategoryName( string $categoryName, array &$siteLinks ): void {
 		$siteLinks['commonswiki'] = new SiteLink( 'commonswiki', 'Category:' . $categoryName );
 	}
 
-	/**
-	 * @param Item $item
-	 *
-	 * @return string|null
-	 */
-	private function getCommonsCategoryName( Item $item ) {
+	private function getCommonsCategoryName( Item $item ): ?string {
 		$propertyId = new PropertyId( $this->commonsCategoryPropertySetting );
 		$statements = $item->getStatements()->getByPropertyId( $propertyId );
 
@@ -117,7 +98,7 @@ class WikibaseClientSiteLinksForItemHandler {
 		array $mainSnaks,
 		ItemId $itemId,
 		PropertyId $propertyId
-	) {
+	): ?string {
 		foreach ( $mainSnaks as $snak ) {
 			if ( !( $snak instanceof PropertyValueSnak ) ) {
 				continue;

@@ -2,5 +2,11 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
 
+	<rule ref="MediaWiki.Commenting.FunctionComment">
+		<severity>0</severity>
+	</rule>
+
 	<file>.</file>
+	<arg name="extensions" value="php" />
+	<arg name="encoding" value="UTF-8" />
 </ruleset>

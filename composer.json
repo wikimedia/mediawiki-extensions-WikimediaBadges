@@ -21,7 +21,7 @@
 		"irc": "irc://irc.libera.chat/wikidata"
 	},
 	"require": {
-		"php": ">=5.5.9"
+		"php": ">=7.2.0"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "37.0.0",

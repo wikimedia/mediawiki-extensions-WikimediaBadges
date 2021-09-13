@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace WikimediaBadges\Tests;
 
 use DataValues\DecimalValue;
@@ -12,7 +14,6 @@ use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\SiteLink;
 use Wikibase\DataModel\Snak\PropertySomeValueSnak;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
-use Wikimedia\Assert\ParameterTypeException;
 use WikimediaBadges\WikibaseClientSiteLinksForItemHandler;
 
 /**
@@ -96,24 +97,6 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
 		$origSidebar = $sidebar;
 		$handler->doProvideSiteLinks( $this->getRegularItem(), $sidebar );
 		$this->assertSame( $origSidebar, $sidebar );
-	}
-
-	/**
-	 * @dataProvider constructor_invalidSettingProvider
-	 */
-	public function testConstructor_invalidSetting( $value ) {
-		$this->expectException( ParameterTypeException::class );
-
-		new WikibaseClientSiteLinksForItemHandler( $value );
-	}
-
-	public function constructor_invalidSettingProvider() {
-		return [
-			[ [ ':(' ] ],
-			[ static function () {
-			} ],
-			[ false ],
-		];
 	}
 
 	public function testAddToSidebar() {
