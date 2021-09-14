@@ -5,11 +5,16 @@ declare( strict_types = 1 );
 namespace WikimediaBadges;
 
 use DataValues\StringValue;
-use RequestContext;
+use MediaWiki\MediaWikiServices;
+use OutOfBoundsException;
 use Wikibase\Client\Usage\UsageAccumulator;
+use Wikibase\Client\WikibaseClient;
+use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\NumericPropertyId;
+use Wikibase\DataModel\Services\Lookup\EntityLookup;
+use Wikibase\DataModel\Services\Lookup\EntityLookupException;
 use Wikibase\DataModel\SiteLink;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Snak\Snak;
@@ -25,18 +30,41 @@ use Wikibase\DataModel\Snak\Snak;
  */
 class WikibaseClientSiteLinksForItemHandler {
 
+	/** @var EntityLookup */
+	private $entityLookup;
+
+	/** @var string|null */
+	private $topicsMainCategoryProperty;
+
+	/** @var string|null */
+	private $categoryRelatedToListProperty;
+
 	/**
 	 * @var string|null
 	 */
 	private $commonsCategoryPropertySetting;
 
 	private static function newFromGlobalState(): self {
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+
 		return new self(
-			RequestContext::getMain()->getConfig()->get( 'WikimediaBadgesCommonsCategoryProperty' )
+			WikibaseClient::getEntityLookup( $services ),
+			$config->get( 'WikimediaBadgesTopicsMainCategoryProperty' ),
+			$config->get( 'WikimediaBadgesCategoryRelatedToListProperty' ),
+			$config->get( 'WikimediaBadgesCommonsCategoryProperty' )
 		);
 	}
 
-	public function __construct( ?string $commonsCategoryPropertySetting ) {
+	public function __construct(
+		EntityLookup $entityLookup,
+		?string $topicsMainCategoryProperty,
+		?string $categoryRelatedToListProperty,
+		?string $commonsCategoryPropertySetting
+	) {
+		$this->entityLookup = $entityLookup;
+		$this->topicsMainCategoryProperty = $topicsMainCategoryProperty;
+		$this->categoryRelatedToListProperty = $categoryRelatedToListProperty;
 		$this->commonsCategoryPropertySetting = $commonsCategoryPropertySetting;
 	}
 
@@ -58,33 +86,130 @@ class WikibaseClientSiteLinksForItemHandler {
 	 * @param SiteLink[] &$siteLinks
 	 */
 	public function doProvideSiteLinks( Item $item, array &$siteLinks ): void {
-		if ( $this->commonsCategoryPropertySetting !== null ) {
-			$categoryName = $this->getCommonsCategoryName( $item );
-			if ( $categoryName !== null ) {
-				$this->handleCategoryName( $categoryName, $siteLinks );
-			}
+		$sitelink = $this->getCommonsSiteLink( $item );
+		if ( $sitelink !== null ) {
+			$this->addSiteLink( $sitelink, $siteLinks );
 		}
 	}
 
 	/**
-	 * @param string $categoryName
+	 * @param string $siteLink
 	 * @param SiteLink[] &$siteLinks
 	 */
-	private function handleCategoryName( string $categoryName, array &$siteLinks ): void {
-		$siteLinks['commonswiki'] = new SiteLink( 'commonswiki', 'Category:' . $categoryName );
+	private function addSiteLink( string $siteLink, array &$siteLinks ): void {
+		$siteLinks['commonswiki'] = new SiteLink( 'commonswiki', $siteLink );
+	}
+
+	private function getCommonsSiteLink( Item $item ): ?string {
+		try {
+			return $item->getSiteLink( 'commonswiki' )->getPageName();
+		} catch ( OutOfBoundsException $e ) {
+			// pass
+		}
+
+		$topicsMainCategorySitelink = $this->getLinkedItemSitelink(
+			$item,
+			$this->topicsMainCategoryProperty
+		);
+		if ( $topicsMainCategorySitelink !== null ) {
+			return $topicsMainCategorySitelink;
+		}
+
+		$categoryRelatedToListSitelink = $this->getLinkedItemSitelink(
+			$item,
+			$this->categoryRelatedToListProperty
+		);
+		if ( $categoryRelatedToListSitelink !== null ) {
+			return $categoryRelatedToListSitelink;
+		}
+
+		$categoryName = $this->getCommonsCategoryName( $item );
+		if ( $categoryName !== null ) {
+			return 'Category:' . $categoryName;
+		}
+
+		return null;
+	}
+
+	private function getLinkedItemSitelink( Item $item, ?string $propertyIdString ): ?string {
+		if ( $propertyIdString === null ) {
+			return null;
+		}
+
+		$propertyId = new NumericPropertyId( $propertyIdString );
+		$statements = $item->getStatements()->getByPropertyId( $propertyId );
+
+		$mainSnaks = $statements->getBestStatements()->getMainSnaks();
+
+		return $this->getCommonsSitelinkFromMainSnaks(
+			$mainSnaks,
+			$item->getId(),
+			$propertyId
+		);
 	}
 
 	private function getCommonsCategoryName( Item $item ): ?string {
+		if ( $this->commonsCategoryPropertySetting === null ) {
+			return null;
+		}
+
 		$propertyId = new NumericPropertyId( $this->commonsCategoryPropertySetting );
 		$statements = $item->getStatements()->getByPropertyId( $propertyId );
 
 		$mainSnaks = $statements->getBestStatements()->getMainSnaks();
 
-		return $this->getCommonsCategoryNameFromMainSnaks(
+		return $this->getStringValueFromMainSnaks(
 			$mainSnaks,
 			$item->getId(),
 			$propertyId
 		);
+	}
+
+	private function getCommonsSitelinkFromMainSnaks(
+		array $mainSnaks,
+		ItemId $itemId,
+		NumericPropertyId $propertyId
+	): ?string {
+		foreach ( $mainSnaks as $snak ) {
+			if ( !( $snak instanceof PropertyValueSnak ) ) {
+				continue;
+			}
+
+			$dataValue = $snak->getDataValue();
+			if ( !(
+				$dataValue instanceof EntityIdValue &&
+				$dataValue->getEntityId() instanceof ItemId
+			) ) {
+				wfLogWarning(
+					$itemId->getSerialization() . ' has a PropertyValueSnak with ' .
+					$propertyId->getSerialization() . ' that has non-ItemId data.'
+				);
+
+				continue;
+			}
+			$itemId = $dataValue->getEntityId();
+			'@phan-var ItemId $itemId';
+
+			try {
+				$item = $this->getItem( $itemId );
+			} catch ( EntityLookupException $e ) {
+				continue;
+			}
+
+			try {
+				return $item->getSiteLink( 'commonswiki' )->getPageName();
+			} catch ( OutOfBoundsException $e ) {
+				continue;
+			}
+		}
+
+		return null;
+	}
+
+	/** @throws EntityLookupException */
+	private function getItem( ItemId $itemId ): Item {
+		/* @phan-suppress-next-line PhanTypeMismatchReturnSuperType */
+		return $this->entityLookup->getEntity( $itemId );
 	}
 
 	/**
@@ -94,7 +219,7 @@ class WikibaseClientSiteLinksForItemHandler {
 	 *
 	 * @return string|null
 	 */
-	private function getCommonsCategoryNameFromMainSnaks(
+	private function getStringValueFromMainSnaks(
 		array $mainSnaks,
 		ItemId $itemId,
 		NumericPropertyId $propertyId

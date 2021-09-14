@@ -42,6 +42,12 @@
 		"WikibaseClientSiteLinksForItem": "WikimediaBadges\\WikibaseClientSiteLinksForItemHandler::provideSiteLinks"
 	},
 	"config": {
+		"WikimediaBadgesTopicsMainCategoryProperty": {
+			"value": "P910"
+		},
+		"WikimediaBadgesCategoryRelatedToListProperty": {
+			"value": "P1754"
+		},
 		"WikimediaBadgesCommonsCategoryProperty": {
 			"value": "P373"
 		}
