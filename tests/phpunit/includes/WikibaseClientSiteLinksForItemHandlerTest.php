@@ -10,7 +10,7 @@ use MediaWikiTestCase;
 use Wikibase\Client\Usage\UsageAccumulator;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
-use Wikibase\DataModel\Entity\PropertyId;
+use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\SiteLink;
 use Wikibase\DataModel\Snak\PropertySomeValueSnak;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
@@ -114,7 +114,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
 	}
 
 	private function getRegularItem() {
-		$propertyId = new PropertyId( 'P373' );
+		$propertyId = new NumericPropertyId( 'P373' );
 		$item = new Item( new ItemId( 'Q123' ) );
 		$item->getStatements()->addNewStatement( new PropertyValueSnak( $propertyId, new StringValue( 'Amsterdam' ) ) );
 		$item->getStatements()->addNewStatement( new PropertySomeValueSnak( $propertyId ) );
@@ -122,7 +122,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
 	}
 
 	private function getInvalidSnakItem() {
-		$propertyId = new PropertyId( 'P12' );
+		$propertyId = new NumericPropertyId( 'P12' );
 		$mainSnak = new PropertyValueSnak( $propertyId, new DecimalValue( 1 ) );
 		$item = new Item( new ItemId( 'Q123' ) );
 		$item->getStatements()->addNewStatement( $mainSnak );

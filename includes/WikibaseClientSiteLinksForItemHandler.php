@@ -9,7 +9,7 @@ use RequestContext;
 use Wikibase\Client\Usage\UsageAccumulator;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
-use Wikibase\DataModel\Entity\PropertyId;
+use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\SiteLink;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Snak\Snak;
@@ -75,7 +75,7 @@ class WikibaseClientSiteLinksForItemHandler {
 	}
 
 	private function getCommonsCategoryName( Item $item ): ?string {
-		$propertyId = new PropertyId( $this->commonsCategoryPropertySetting );
+		$propertyId = new NumericPropertyId( $this->commonsCategoryPropertySetting );
 		$statements = $item->getStatements()->getByPropertyId( $propertyId );
 
 		$mainSnaks = $statements->getBestStatements()->getMainSnaks();
@@ -90,14 +90,14 @@ class WikibaseClientSiteLinksForItemHandler {
 	/**
 	 * @param Snak[] $mainSnaks
 	 * @param ItemId $itemId
-	 * @param PropertyId $propertyId
+	 * @param NumericPropertyId $propertyId
 	 *
 	 * @return string|null
 	 */
 	private function getCommonsCategoryNameFromMainSnaks(
 		array $mainSnaks,
 		ItemId $itemId,
-		PropertyId $propertyId
+		NumericPropertyId $propertyId
 	): ?string {
 		foreach ( $mainSnaks as $snak ) {
 			if ( !( $snak instanceof PropertyValueSnak ) ) {
