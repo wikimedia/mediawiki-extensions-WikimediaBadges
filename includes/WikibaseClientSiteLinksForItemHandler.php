@@ -195,6 +195,9 @@ class WikibaseClientSiteLinksForItemHandler {
 			} catch ( EntityLookupException $e ) {
 				continue;
 			}
+			if ( $item === null ) {
+				continue;
+			}
 
 			try {
 				return $item->getSiteLink( 'commonswiki' )->getPageName();
@@ -207,8 +210,7 @@ class WikibaseClientSiteLinksForItemHandler {
 	}
 
 	/** @throws EntityLookupException */
-	private function getItem( ItemId $itemId ): Item {
-		/* @phan-suppress-next-line PhanTypeMismatchReturnSuperType */
+	private function getItem( ItemId $itemId ): ?Item {
 		return $this->entityLookup->getEntity( $itemId );
 	}
 

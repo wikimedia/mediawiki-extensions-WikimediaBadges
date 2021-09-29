@@ -148,7 +148,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
 			$entityLookup,
 		];
 
-		yield "Own sitelink = Topic's main category" => [
+		yield "Own sitelink > Topic's main category" => [
 			[ 'commonswiki' => $newCommonsLink ],
 			[],
 			NewItem::withId( 'Q123' )
@@ -190,6 +190,22 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
 						->withValue( 'Not Amsterdam' )
 				)
 				->build(),
+			$entityLookup,
+		];
+
+		yield "Topic's main category linking to missing item => Category related to list" => [
+			[ 'commonswiki' => $newCommonsLink ],
+			[],
+			NewItem::withId( 'Q123' )
+				->andStatement(
+					NewStatement::forProperty( 'P910' )
+						->withValue( new ItemId( 'Q1000' ) )
+				)
+				->andStatement(
+					NewStatement::forProperty( 'P1754' )
+						->withValue( new ItemId( 'Q456' ) )
+				)
+			->build(),
 			$entityLookup,
 		];
 	}
