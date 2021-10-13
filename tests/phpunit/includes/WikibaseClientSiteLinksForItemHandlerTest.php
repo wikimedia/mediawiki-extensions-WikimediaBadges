@@ -5,7 +5,7 @@ declare( strict_types = 1 );
 namespace WikimediaBadges\Tests;
 
 use DataValues\DecimalValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikibase\Client\Usage\UsageAccumulator;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
@@ -24,7 +24,7 @@ use WikimediaBadges\WikibaseClientSiteLinksForItemHandler;
  * @license GPL-2.0-or-later
  * @author Marius Hoch < hoo@online.de >
  */
-class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiTestCase {
+class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider doAddToSidebarProvider
