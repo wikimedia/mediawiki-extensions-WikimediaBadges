@@ -27,6 +27,7 @@
 			],
 			"skinStyles": {
 				"vector": "skins/vector/wikimedia-badges.css",
+				"vector-2022": "skins/vector/wikimedia-badges.css",
 				"monobook": "skins/monobook/wikimedia-badges.css",
 				"cologneblue": "skins/cologneblue/wikimedia-badges.css",
 				"modern": "skins/modern/wikimedia-badges.css"
