@@ -12,8 +12,8 @@ use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\DataModel\Services\Lookup\InMemoryEntityLookup;
 use Wikibase\DataModel\SiteLink;
-use Wikibase\Repo\Tests\NewItem;
-use Wikibase\Repo\Tests\NewStatement;
+use Wikibase\DataModel\Tests\NewItem;
+use Wikibase\DataModel\Tests\NewStatement;
 use WikimediaBadges\WikibaseClientSiteLinksForItemHandler;
 
 /**
