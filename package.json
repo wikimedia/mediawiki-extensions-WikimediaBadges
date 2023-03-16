@@ -7,7 +7,7 @@
 		"grunt-banana-checker": "0.10.0",
 		"grunt-eslint": "24.0.1",
 		"grunt-stylelint": "0.18.0",
-		"stylelint-config-wikimedia": "0.13.1"
+		"stylelint-config-wikimedia": "0.14.0"
 	},
 	"scripts": {
 		"test": "grunt test"
