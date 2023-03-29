@@ -7,36 +7,36 @@
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 
-.badge-goodarticle:before,
-.badge-goodlist:before,
-.badge-recommendedarticle:before {
+.badge-goodarticle::before,
+.badge-goodlist::before,
+.badge-recommendedarticle::before {
 	content: url( ../../images/badge-silver-star.png );
 	margin-right: 0.2em;
 }
 
-.badge-featuredarticle:before,
-.badge-featuredportal:before,
-.badge-featuredlist:before {
+.badge-featuredarticle::before,
+.badge-featuredportal::before,
+.badge-featuredlist::before {
 	content: url( ../../images/badge-golden-star.png );
 	margin-right: 0.2em;
 }
 
-.badge-problematic:before {
+.badge-problematic::before {
 	content: url( ../../images/badge-problematic.png );
 	margin-right: 0.2em;
 }
 
-.badge-proofread:before {
+.badge-proofread::before {
 	content: url( ../../images/badge-proofread.png );
 	margin-right: 0.2em;
 }
 
-.badge-validated:before {
+.badge-validated::before {
 	content: url( ../../images/badge-validated.png );
 	margin-right: 0.2em;
 }
 
-.badge-digitaldocument:before {
+.badge-digitaldocument::before {
 	content: url( ../../images/badge-digitaldocument.png );
 	margin-right: 0.2em;
 }
