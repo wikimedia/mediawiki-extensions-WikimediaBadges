@@ -33,8 +33,24 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 		array $expected,
 		array $sidebar,
 		Item $item,
-		EntityLookup $entityLookup
+		$mockTypEntityLookup
 	) {
+		if ( $mockTypEntityLookup === 'noop' ) {
+			$entityLookup = $this->createMock( EntityLookup::class );
+			$entityLookup->expects( $this->never() )
+				->method( 'getEntity' );
+		} else {
+			$itemWithCategoryAmsterdamSitelink = NewItem::withId( 'Q456' )
+				->andSiteLink( 'commonswiki', 'Category:Amsterdam' )
+				->build();
+			$itemWithAmsterdamSitelink = NewItem::withId( 'Q789' )
+				->andSiteLink( 'commonswiki', 'Amsterdam' )
+				->build();
+			$entityLookup = new InMemoryEntityLookup(
+				$itemWithCategoryAmsterdamSitelink,
+				$itemWithAmsterdamSitelink
+			);
+		}
 		$handler = new WikibaseClientSiteLinksForItemHandler(
 			$entityLookup,
 			'P910',
@@ -45,29 +61,16 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 		$this->assertEquals( $expected, $sidebar );
 	}
 
-	public function doAddToSidebarProvider() {
+	public static function doAddToSidebarProvider() {
 		$wikiquoteLink = new SiteLink( 'enwikiquote', 'Ams' );
 		$oldCommonsLink = new SiteLink( 'commonswiki', 'Amsterdam' );
 		$newCommonsLink = new SiteLink( 'commonswiki', 'Category:Amsterdam' );
-		$unusedEntityLookup = $this->createMock( EntityLookup::class );
-		$unusedEntityLookup->expects( $this->never() )
-			->method( 'getEntity' );
-		$itemWithCategoryAmsterdamSitelink = NewItem::withId( 'Q456' )
-			->andSiteLink( 'commonswiki', 'Category:Amsterdam' )
-			->build();
-		$itemWithAmsterdamSitelink = NewItem::withId( 'Q789' )
-			->andSiteLink( 'commonswiki', 'Amsterdam' )
-			->build();
-		$entityLookup = new InMemoryEntityLookup(
-			$itemWithCategoryAmsterdamSitelink,
-			$itemWithAmsterdamSitelink
-		);
 
 		yield 'Item without commons category statement' => [
 			[],
 			[],
 			new Item( new ItemId( 'Q42' ) ),
-			$unusedEntityLookup
+			'noop',
 		];
 
 		yield 'Sidebar without commons link gets amended' => [
@@ -78,15 +81,15 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 			[
 				'enwikiquote' => $wikiquoteLink
 			],
-			$this->getRegularItem(),
-			$unusedEntityLookup
+			self::getRegularItem(),
+			'noop',
 		];
 
 		yield 'Empty sidebar gets amended' => [
 			[ 'commonswiki' => $newCommonsLink ],
 			[],
-			$this->getRegularItem(),
-			$unusedEntityLookup
+			self::getRegularItem(),
+			'noop',
 		];
 
 		yield 'Existing commons link gets amended' => [
@@ -98,8 +101,8 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 				'enwikiquote' => $wikiquoteLink,
 				'commonswiki' => $oldCommonsLink
 			],
-			$this->getRegularItem(),
-			$unusedEntityLookup
+			self::getRegularItem(),
+			'noop',
 		];
 
 		yield 'Invalid data value' => [
@@ -111,8 +114,8 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 				'enwikiquote' => $wikiquoteLink,
 				'commonswiki' => $oldCommonsLink
 			],
-			$this->getInvalidSnakItem(),
-			$unusedEntityLookup
+			self::getInvalidSnakItem(),
+			'noop',
 		];
 
 		yield 'Own sitelink' => [
@@ -121,7 +124,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 			NewItem::withId( 'Q123' )
 				->andSiteLink( 'commonswiki', 'Category:Amsterdam' )
 				->build(),
-			$unusedEntityLookup,
+			'noop',
 		];
 
 		yield "Topic's main category statement" => [
@@ -133,7 +136,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 						->withValue( new ItemId( 'Q456' ) )
 				)
 				->build(),
-			$entityLookup,
+			'inmemory',
 		];
 
 		yield 'Category related to list statement' => [
@@ -145,7 +148,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 						->withValue( new ItemId( 'Q456' ) )
 				)
 				->build(),
-			$entityLookup,
+			'inmemory',
 		];
 
 		yield "Own sitelink > Topic's main category" => [
@@ -158,7 +161,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 						->withValue( new ItemId( 'Q789' ) )
 				)
 				->build(),
-			$entityLookup,
+			'inmemory',
 		];
 
 		yield "Topic's main category > Category related to list" => [
@@ -174,7 +177,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 						->withValue( new ItemId( 'Q789' ) )
 				)
 				->build(),
-			$entityLookup,
+			'inmemory',
 		];
 
 		yield 'Category related to list > Commons category' => [
@@ -190,7 +193,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 						->withValue( 'Not Amsterdam' )
 				)
 				->build(),
-			$entityLookup,
+			'inmemory',
 		];
 
 		yield "Topic's main category linking to missing item => Category related to list" => [
@@ -206,7 +209,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 						->withValue( new ItemId( 'Q456' ) )
 				)
 			->build(),
-			$entityLookup,
+			'inmemory',
 		];
 	}
 
@@ -220,7 +223,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 
 		$sidebar = [ '101010' => new SiteLink( '101010', 'blah' ) ];
 		$origSidebar = $sidebar;
-		$handler->doProvideSiteLinks( $this->getRegularItem(), $sidebar );
+		$handler->doProvideSiteLinks( self::getRegularItem(), $sidebar );
 		$this->assertSame( $origSidebar, $sidebar );
 	}
 
@@ -238,7 +241,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 		$this->assertTrue( true );
 	}
 
-	private function getRegularItem() {
+	private static function getRegularItem() {
 		return NewItem::withId( 'Q123' )
 			->andStatement(
 				NewStatement::forProperty( 'P373' )
@@ -248,7 +251,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 			->build();
 	}
 
-	private function getInvalidSnakItem() {
+	private static function getInvalidSnakItem() {
 		return NewItem::withId( 'Q123' )
 			->andStatement(
 				NewStatement::forProperty( 'P12' )
