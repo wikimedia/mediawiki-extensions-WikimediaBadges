@@ -26,7 +26,7 @@ class BeforePageDisplayHookHandlerTest extends TestCase {
 			->method( 'addModuleStyles' )
 			->with( 'ext.wikimediaBadges' );
 
-		BeforePageDisplayHookHandler::onBeforePageDisplay( $out, $skin );
+		( new BeforePageDisplayHookHandler )->onBeforePageDisplay( $out, $skin );
 	}
 
 }

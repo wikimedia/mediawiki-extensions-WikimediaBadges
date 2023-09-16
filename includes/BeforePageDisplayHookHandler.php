@@ -2,8 +2,7 @@
 
 namespace WikimediaBadges;
 
-use OutputPage;
-use Skin;
+use MediaWiki\Hook\BeforePageDisplayHook;
 
 /**
  * Handler for the BeforePageDisplay hook.
@@ -13,15 +12,10 @@ use Skin;
  * @license GPL-2.0-or-later
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
-class BeforePageDisplayHookHandler {
+class BeforePageDisplayHookHandler implements BeforePageDisplayHook {
 
-	/**
-	 * Handler for the BeforePageDisplay hook
-	 *
-	 * @param OutputPage $out
-	 * @param Skin $skin
-	 */
-	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+	/** @inheritDoc */
+	public function onBeforePageDisplay( $out, $skin ): void {
 		$out->addModuleStyles( 'ext.wikimediaBadges' );
 	}
 
