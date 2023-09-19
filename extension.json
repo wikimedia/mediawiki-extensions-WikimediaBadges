@@ -39,8 +39,13 @@
 		"remoteExtPath": "WikimediaBadges/resources"
 	},
 	"Hooks": {
-		"BeforePageDisplay": "WikimediaBadges\\BeforePageDisplayHookHandler::onBeforePageDisplay",
+		"BeforePageDisplay": "beforepagedisplay",
 		"WikibaseClientSiteLinksForItem": "WikimediaBadges\\WikibaseClientSiteLinksForItemHandler::provideSiteLinks"
+	},
+	"HookHandlers": {
+		"beforepagedisplay": {
+			"class": "WikimediaBadges\\BeforePageDisplayHookHandler"
+		}
 	},
 	"config": {
 		"WikimediaBadgesTopicsMainCategoryProperty": {
