@@ -2,7 +2,7 @@
 
 namespace WikimediaBadges\Tests;
 
-use OutputPage;
+use MediaWiki\Output\OutputPage;
 use PHPUnit\Framework\TestCase;
 use SkinTemplate;
 use WikimediaBadges\BeforePageDisplayHookHandler;
