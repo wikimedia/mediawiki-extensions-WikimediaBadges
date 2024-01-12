@@ -21,10 +21,6 @@
 	},
 	"ResourceModules": {
 		"ext.wikimediaBadges": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"skinStyles": {
 				"vector": "skins/vector/wikimedia-badges.css",
 				"vector-2022": "skins/vector/wikimedia-badges.css",
