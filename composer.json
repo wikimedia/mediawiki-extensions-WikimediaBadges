@@ -20,9 +20,6 @@
 	"support": {
 		"irc": "irc://irc.libera.chat/wikidata"
 	},
-	"require": {
-		"php": ">=7.2.0"
-	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "43.0.0",
 		"mediawiki/mediawiki-phan-config": "0.14.0",
