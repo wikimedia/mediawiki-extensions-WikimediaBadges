@@ -2,7 +2,7 @@
 
 namespace WikimediaBadges;
 
-use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Output\Hook\BeforePageDisplayHook;
 
 /**
  * Handler for the BeforePageDisplay hook.
