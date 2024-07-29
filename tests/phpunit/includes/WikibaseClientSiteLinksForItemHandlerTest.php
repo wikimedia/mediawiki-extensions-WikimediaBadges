@@ -229,7 +229,7 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 
 	public function testAddToSidebar() {
 		// Integration test: Make sure this doesn't fatal
-		$this->setMwGlobals( 'wgWikimediaBadgesCommonsCategoryProperty', null );
+		$this->overrideConfigValue( 'WikimediaBadgesCommonsCategoryProperty', null );
 		$sidebar = [];
 
 		WikibaseClientSiteLinksForItemHandler::provideSiteLinks(
