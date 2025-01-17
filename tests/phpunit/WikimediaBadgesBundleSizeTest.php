@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\WikimediaBadges\Structure;
+namespace WikimediaBadges\Tests;
 
 /**
  * @group WikimediaBadges
@@ -9,6 +9,6 @@ class WikimediaBadgesBundleSizeTest extends \MediaWiki\Tests\Structure\BundleSiz
 
 	/** @inheritDoc */
 	public function getBundleSizeConfig(): string {
-		return dirname( __DIR__, 3 ) . '/bundlesize.config.json';
+		return dirname( __DIR__, 2 ) . '/bundlesize.config.json';
 	}
 }
