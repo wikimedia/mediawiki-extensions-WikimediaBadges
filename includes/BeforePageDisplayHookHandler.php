@@ -16,7 +16,9 @@ class BeforePageDisplayHookHandler implements BeforePageDisplayHook {
 
 	/** @inheritDoc */
 	public function onBeforePageDisplay( $out, $skin ): void {
-		$out->addModuleStyles( 'ext.wikimediaBadges' );
+		if ( $out->getProperty( 'wikibase_badges' ) ) {
+			$out->addModuleStyles( 'ext.wikimediaBadges' );
+		}
 	}
 
 }
