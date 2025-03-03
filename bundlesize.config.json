@@ -1,8 +1,0 @@
-[
-	{
-		"resourceModule": "ext.wikimediaBadges",
-		"@FIXME": "This should not be loaded on every page view.",
-		"@phabricator": "https://phabricator.wikimedia.org/T383169",
-		"maxSize": null
-	}
-]
