@@ -14,7 +14,7 @@
 		]
 	},
 	"requires": {
-		"MediaWiki": ">= 1.43"
+		"MediaWiki": ">= 1.44"
 	},
 	"AutoloadNamespaces": {
 		"WikimediaBadges\\": "includes/"
