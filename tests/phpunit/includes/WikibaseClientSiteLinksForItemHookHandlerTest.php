@@ -5,8 +5,11 @@ declare( strict_types = 1 );
 namespace WikimediaBadges\Tests;
 
 use DataValues\DecimalValue;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWikiIntegrationTestCase;
 use Wikibase\Client\Usage\UsageAccumulator;
+use Wikibase\Client\WikibaseClient;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
@@ -14,17 +17,17 @@ use Wikibase\DataModel\Services\Lookup\InMemoryEntityLookup;
 use Wikibase\DataModel\SiteLink;
 use Wikibase\DataModel\Tests\NewItem;
 use Wikibase\DataModel\Tests\NewStatement;
-use WikimediaBadges\WikibaseClientSiteLinksForItemHandler;
+use WikimediaBadges\WikibaseClientSiteLinksForItemHookHandler;
 
 /**
- * @covers \WikimediaBadges\WikibaseClientSiteLinksForItemHandler
+ * @covers \WikimediaBadges\WikibaseClientSiteLinksForItemHookHandler
  *
  * @group WikimediaBadges
  *
  * @license GPL-2.0-or-later
  * @author Marius Hoch < hoo@online.de >
  */
-class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTestCase {
+class WikibaseClientSiteLinksForItemHookHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider doAddToSidebarProvider
@@ -51,13 +54,17 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 				$itemWithAmsterdamSitelink
 			);
 		}
-		$handler = new WikibaseClientSiteLinksForItemHandler(
+		$config = new HashConfig( [
+			'WikimediaBadgesTopicsMainCategoryProperty' => 'P910',
+			'WikimediaBadgesCategoryRelatedToListProperty' => 'P1754',
+			'WikimediaBadgesCommonsCategoryProperty' => 'P373'
+		] );
+		$handler = new WikibaseClientSiteLinksForItemHookHandler(
+			$config,
 			$entityLookup,
-			'P910',
-			'P1754',
-			'P373'
 		);
-		$handler->doProvideSiteLinks( $item, $sidebar );
+		$usageAccumulator = $this->createMock( UsageAccumulator::class );
+		$handler->onWikibaseClientSiteLinksForItem( $item, $sidebar, $usageAccumulator );
 		$this->assertEquals( $expected, $sidebar );
 	}
 
@@ -214,16 +221,15 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 	}
 
 	public function testDoAddToSidebar_disabled() {
-		$handler = new WikibaseClientSiteLinksForItemHandler(
-			new InMemoryEntityLookup(),
-			null,
-			null,
-			null
+		$handler = new WikibaseClientSiteLinksForItemHookHandler(
+			$this->createConfiguredMock( Config::class, [ 'get' => null ] ),
+			new InMemoryEntityLookup()
 		);
 
 		$sidebar = [ '101010' => new SiteLink( '101010', 'blah' ) ];
 		$origSidebar = $sidebar;
-		$handler->doProvideSiteLinks( self::getRegularItem(), $sidebar );
+		$usageAccumulator = $this->createMock( UsageAccumulator::class );
+		$handler->onWikibaseClientSiteLinksForItem( self::getRegularItem(), $sidebar, $usageAccumulator );
 		$this->assertSame( $origSidebar, $sidebar );
 	}
 
@@ -232,11 +238,17 @@ class WikibaseClientSiteLinksForItemHandlerTest extends MediaWikiIntegrationTest
 		$this->overrideConfigValue( 'WikimediaBadgesCommonsCategoryProperty', null );
 		$sidebar = [];
 
-		WikibaseClientSiteLinksForItemHandler::provideSiteLinks(
+		$handler = new WikibaseClientSiteLinksForItemHookHandler(
+			$this->getServiceContainer()->getMainConfig(),
+			WikibaseClient::getEntityLookup( $this->getServiceContainer() ),
+		);
+
+		$handler->onWikibaseClientSiteLinksForItem(
 			new Item( new ItemId( 'Q38434234' ) ),
 			$sidebar,
 			$this->createMock( UsageAccumulator::class )
 		);
+
 		// No exception thrown
 		$this->assertTrue( true );
 	}

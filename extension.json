@@ -36,11 +36,18 @@
 	},
 	"Hooks": {
 		"BeforePageDisplay": "beforepagedisplay",
-		"WikibaseClientSiteLinksForItem": "WikimediaBadges\\WikibaseClientSiteLinksForItemHandler::provideSiteLinks"
+		"WikibaseClientSiteLinksForItem": "WikibaseClientSiteLinksForItem"
 	},
 	"HookHandlers": {
 		"beforepagedisplay": {
 			"class": "WikimediaBadges\\BeforePageDisplayHookHandler"
+		},
+		"WikibaseClientSiteLinksForItem": {
+			"class": "WikimediaBadges\\WikibaseClientSiteLinksForItemHookHandler",
+			"services": [
+				"MainConfig",
+				"WikibaseClient.EntityLookup"
+			]
 		}
 	},
 	"config": {

@@ -5,10 +5,10 @@ declare( strict_types = 1 );
 namespace WikimediaBadges;
 
 use DataValues\StringValue;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\Config;
 use OutOfBoundsException;
+use Wikibase\Client\Hooks\WikibaseClientSiteLinksForItemHook;
 use Wikibase\Client\Usage\UsageAccumulator;
-use Wikibase\Client\WikibaseClient;
 use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
@@ -28,7 +28,7 @@ use Wikibase\DataModel\Snak\Snak;
  * @license GPL-2.0-or-later
  * @author Marius Hoch < hoo@online.de >
  */
-class WikibaseClientSiteLinksForItemHandler {
+class WikibaseClientSiteLinksForItemHookHandler implements WikibaseClientSiteLinksForItemHook {
 
 	/** @var EntityLookup */
 	private $entityLookup;
@@ -44,48 +44,22 @@ class WikibaseClientSiteLinksForItemHandler {
 	 */
 	private $commonsCategoryPropertySetting;
 
-	private static function newFromGlobalState(): self {
-		$services = MediaWikiServices::getInstance();
-		$config = $services->getMainConfig();
-
-		return new self(
-			WikibaseClient::getEntityLookup( $services ),
-			$config->get( 'WikimediaBadgesTopicsMainCategoryProperty' ),
-			$config->get( 'WikimediaBadgesCategoryRelatedToListProperty' ),
-			$config->get( 'WikimediaBadgesCommonsCategoryProperty' )
-		);
-	}
-
 	public function __construct(
-		EntityLookup $entityLookup,
-		?string $topicsMainCategoryProperty,
-		?string $categoryRelatedToListProperty,
-		?string $commonsCategoryPropertySetting
+		Config $config,
+		EntityLookup $entityLookup
 	) {
 		$this->entityLookup = $entityLookup;
-		$this->topicsMainCategoryProperty = $topicsMainCategoryProperty;
-		$this->categoryRelatedToListProperty = $categoryRelatedToListProperty;
-		$this->commonsCategoryPropertySetting = $commonsCategoryPropertySetting;
+		$this->topicsMainCategoryProperty = $config->get( 'WikimediaBadgesTopicsMainCategoryProperty' );
+		$this->categoryRelatedToListProperty = $config->get( 'WikimediaBadgesCategoryRelatedToListProperty' );
+		$this->commonsCategoryPropertySetting = $config->get( 'WikimediaBadgesCommonsCategoryProperty' );
 	}
 
-	/**
-	 * @param Item $item
-	 * @param SiteLink[] &$siteLinks
-	 * @param UsageAccumulator $usageAccumulator
-	 */
-	public static function provideSiteLinks(
-		Item $item, array &$siteLinks, UsageAccumulator $usageAccumulator
+	/** @inheritDoc */
+	public function onWikibaseClientSiteLinksForItem(
+		Item $item,
+		array &$siteLinks,
+		UsageAccumulator $usageAccumulator
 	): void {
-		$self = self::newFromGlobalState();
-
-		$self->doProvideSiteLinks( $item, $siteLinks );
-	}
-
-	/**
-	 * @param Item $item
-	 * @param SiteLink[] &$siteLinks
-	 */
-	public function doProvideSiteLinks( Item $item, array &$siteLinks ): void {
 		$sitelink = $this->getCommonsSiteLink( $item );
 		if ( $sitelink !== null ) {
 			$this->addSiteLink( $sitelink, $siteLinks );
