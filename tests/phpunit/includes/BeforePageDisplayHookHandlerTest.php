@@ -3,8 +3,8 @@
 namespace WikimediaBadges\Tests;
 
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Skin\SkinTemplate;
 use PHPUnit\Framework\TestCase;
-use SkinTemplate;
 use WikimediaBadges\BeforePageDisplayHookHandler;
 
 /**
