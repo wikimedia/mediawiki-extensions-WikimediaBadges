@@ -77,7 +77,7 @@ class WikibaseClientSiteLinksForItemHookHandler implements WikibaseClientSiteLin
 	private function getCommonsSiteLink( Item $item ): ?string {
 		try {
 			return $item->getSiteLink( 'commonswiki' )->getPageName();
-		} catch ( OutOfBoundsException $e ) {
+		} catch ( OutOfBoundsException ) {
 			// pass
 		}
 
@@ -166,7 +166,7 @@ class WikibaseClientSiteLinksForItemHookHandler implements WikibaseClientSiteLin
 
 			try {
 				$item = $this->getItem( $itemId );
-			} catch ( EntityLookupException $e ) {
+			} catch ( EntityLookupException ) {
 				continue;
 			}
 			if ( $item === null ) {
@@ -175,7 +175,7 @@ class WikibaseClientSiteLinksForItemHookHandler implements WikibaseClientSiteLin
 
 			try {
 				return $item->getSiteLink( 'commonswiki' )->getPageName();
-			} catch ( OutOfBoundsException $e ) {
+			} catch ( OutOfBoundsException ) {
 				continue;
 			}
 		}
