@@ -30,9 +30,6 @@ use Wikibase\DataModel\Snak\Snak;
  */
 class WikibaseClientSiteLinksForItemHookHandler implements WikibaseClientSiteLinksForItemHook {
 
-	/** @var EntityLookup */
-	private $entityLookup;
-
 	/** @var string|null */
 	private $topicsMainCategoryProperty;
 
@@ -46,9 +43,8 @@ class WikibaseClientSiteLinksForItemHookHandler implements WikibaseClientSiteLin
 
 	public function __construct(
 		Config $config,
-		EntityLookup $entityLookup
+		private readonly EntityLookup $entityLookup,
 	) {
-		$this->entityLookup = $entityLookup;
 		$this->topicsMainCategoryProperty = $config->get( 'WikimediaBadgesTopicsMainCategoryProperty' );
 		$this->categoryRelatedToListProperty = $config->get( 'WikimediaBadgesCategoryRelatedToListProperty' );
 		$this->commonsCategoryPropertySetting = $config->get( 'WikimediaBadgesCommonsCategoryProperty' );
