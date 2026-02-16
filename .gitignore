@@ -8,7 +8,6 @@ node_modules/
 vendor/
 build/
 
-!.*
 .idea/
 /.eslintcache
 /.stylelintcache
