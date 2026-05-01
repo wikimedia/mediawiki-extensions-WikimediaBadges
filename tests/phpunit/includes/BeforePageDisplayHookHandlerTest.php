@@ -2,9 +2,11 @@
 
 namespace WikimediaBadges\Tests;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\SkinTemplate;
-use PHPUnit\Framework\TestCase;
+use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 use WikimediaBadges\BeforePageDisplayHookHandler;
 
 /**
@@ -15,12 +17,18 @@ use WikimediaBadges\BeforePageDisplayHookHandler;
  * @license GPL-2.0-or-later
  * @author Marius Hoch < hoo@online.de >
  */
-class BeforePageDisplayHookHandlerTest extends TestCase {
+class BeforePageDisplayHookHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testOnBeforePageDisplay() {
 		$skin = new SkinTemplate();
 		$out = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->getMock();
+
+		$out->method( 'getUser' )
+			->willReturn( $this->createMock( User::class ) );
+		$out->method( 'getConfig' )
+			->willReturn( $this->createMock( Config::class ) );
+
 		$out->expects( $this->once() )
 			->method( 'getProperty' )
 			->with( 'wikibase_badges' )
@@ -41,6 +49,12 @@ class BeforePageDisplayHookHandlerTest extends TestCase {
 		$out = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->getMock();
+
+		$out->method( 'getUser' )
+			->willReturn( $this->createMock( User::class ) );
+		$out->method( 'getConfig' )
+			->willReturn( $this->createMock( Config::class ) );
+
 		$out->expects( $this->once() )
 			->method( 'getProperty' )
 			->with( 'wikibase_badges' )

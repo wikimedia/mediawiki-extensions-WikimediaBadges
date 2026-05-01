@@ -1,0 +1,35 @@
+/**
+ * Styles for badges on client wikis in the Vector skin for ULS v2
+ *
+ * @license GPL-2.0-or-later
+ * @author Abijeet Patro <apatro@wikimedia.org>
+ */
+.uls-rewrite {
+	.badge-goodarticle::before,
+	.badge-goodlist::before,
+	.badge-recommendedarticle::before {
+		content: url( ../images/badge-silver-star-uls-v2.png );
+	}
+
+	.badge-featuredarticle::before,
+	.badge-featuredportal::before,
+	.badge-featuredlist::before {
+		content: url( ../images/badge-golden-star-uls-v2.png );
+	}
+
+	.badge-problematic::before {
+		content: url( ../images/badge-problematic-uls-v2.png );
+	}
+
+	.badge-proofread::before {
+		content: url( ../images/badge-proofread-uls-v2.png );
+	}
+
+	.badge-validated::before {
+		content: url( ../images/badge-validated-uls-v2.png );
+	}
+
+	.badge-digitaldocument::before {
+		content: url( ../images/badge-digitaldocument-uls-v2.png );
+	}
+}

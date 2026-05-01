@@ -28,6 +28,13 @@
 				"cologneblue": "skins/cologneblue/wikimedia-badges.css",
 				"modern": "skins/modern/wikimedia-badges.css"
 			}
+		},
+		"ext.wikimediaBadges.ulsV2": {
+			"skinStyles": {
+				"vector": "skins/wikimedia-badges-ulsv2.css",
+				"vector-2022": "skins/wikimedia-badges-ulsv2.css",
+				"minerva": "skins/wikimedia-badges-ulsv2.css"
+			}
 		}
 	},
 	"ResourceFileModulePaths": {
