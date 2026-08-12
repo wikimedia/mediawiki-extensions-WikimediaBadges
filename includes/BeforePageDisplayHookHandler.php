@@ -25,7 +25,7 @@ class BeforePageDisplayHookHandler implements BeforePageDisplayHook {
 
 			if (
 				ExtensionRegistry::getInstance()->isLoaded( 'UniversalLanguageSelector' ) &&
-				Hooks::isLanguageSelectorV2Enabled( $out->getUser(), $skin, $out->getConfig() )
+				Hooks::isLanguageSelectorV2Enabled( $skin, $out->getConfig() )
 			) {
 				$out->addModuleStyles( 'ext.wikimediaBadges.ulsV2' );
 			}

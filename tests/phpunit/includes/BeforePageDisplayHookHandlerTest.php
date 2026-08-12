@@ -2,7 +2,7 @@
 
 namespace WikimediaBadges\Tests;
 
-use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\User\User;
@@ -27,7 +27,7 @@ class BeforePageDisplayHookHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->method( 'getUser' )
 			->willReturn( $this->createMock( User::class ) );
 		$out->method( 'getConfig' )
-			->willReturn( $this->createMock( Config::class ) );
+			->willReturn( new HashConfig( [ 'ULSLanguageSelectorV2SupportedSkins' => [] ] ) );
 
 		$out->expects( $this->once() )
 			->method( 'getProperty' )
@@ -53,7 +53,7 @@ class BeforePageDisplayHookHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->method( 'getUser' )
 			->willReturn( $this->createMock( User::class ) );
 		$out->method( 'getConfig' )
-			->willReturn( $this->createMock( Config::class ) );
+			->willReturn( new HashConfig( [ 'ULSLanguageSelectorV2SupportedSkins' => [] ] ) );
 
 		$out->expects( $this->once() )
 			->method( 'getProperty' )
